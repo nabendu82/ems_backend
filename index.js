@@ -13,7 +13,13 @@ import projectRoutes from './routes/project.js'
 
 connectDB()
 const app = express()
-app.use(cors())
+const corsOptions = {
+    origin: ['https://ems-frontend-nine-nu.vercel.app', 'http://localhost:5173'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 // Images are now served from Cloudinary, not local public/uploads
